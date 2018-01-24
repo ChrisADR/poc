@@ -1,0 +1,22 @@
+ASAN:DEADLYSIGNAL
+=================================================================
+==17530==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f614fce8aa0 bp 0x7ffd95f74600 sp 0x7ffd95f70410 T0)
+==17530==The signal is caused by a READ memory access.
+==17530==Hint: address points to the zero page.
+    #0 0x7f614fce8a9f in fseeko (/usr/lib/libc.so.6+0x76a9f)
+    #1 0x7f61517fb912 in IsBlobSeekable MagickCore/blob.c:2724
+    #2 0x7f61519f1078 in SetImageInfo MagickCore/image.c:2857
+    #3 0x7f61518b7c12 in ReadImage MagickCore/constitute.c:403
+    #4 0x7f6151b58d10 in ReadStream MagickCore/stream.c:1043
+    #5 0x7f61518b7205 in PingImage MagickCore/constitute.c:226
+    #6 0x7f61518b785c in PingImages MagickCore/constitute.c:327
+    #7 0x7f61511c12b7 in IdentifyImageCommand MagickWand/identify.c:319
+    #8 0x7f6151220d73 in MagickCommandGenesis MagickWand/mogrify.c:183
+    #9 0x55bb8b82df34 in MagickMain utilities/magick.c:149
+    #10 0x55bb8b82e1e8 in main utilities/magick.c:180
+    #11 0x7f614fc92f49 in __libc_start_main (/usr/lib/libc.so.6+0x20f49)
+    #12 0x55bb8b82d9a9 in _start (/home/chris/image-asan/utilities/.libs/lt-magick+0x19a9)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/usr/lib/libc.so.6+0x76a9f) in fseeko
+==17530==ABORTING
